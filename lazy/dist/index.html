@@ -5,20 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>이미지 레이지 로드</title>
-    <script src="./lazy2.js"></script>
+    <script src="./lazy.js"></script>
     <style>
       ul,
       li {
         list-style: none;
       }
       .wrapper {
+        max-width: 640px;
+        margin: 0 auto;
         display: flex;
         flex-wrap: wrap;
       }
 
       .wrapper li img {
         width: 500px;
-        transition: 1.2s ease-in-out;
+        transition: 2.5s ease-in-out;
       }
 
       .wrapper li img.lazy {

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이미지 레이지 로드</title>
+    <script src="./lazy.js" defer></script>
+    <style>
+      ul,
+      li {
+        list-style: none;
+      }
+      .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .wrapper li img {
+        width: 500px;
+      }
+
+      .wrapper li img.lazy {
+        width: 500px;
+        filter: blur(5px);
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="wrapper">
+      <li><img class="lazy" src="./imgs/loading.jpeg" data-src="./imgs/img1.jpeg" alt="해변1" /></li>
+      <li><img class="lazy" src="./imgs/loading.jpeg" data-src="./imgs/img2.jpeg" alt="해변2" /></li>
+      <li><img class="lazy" src="./imgs/loading.jpeg" data-src="./imgs/img3.jpeg" alt="해변3" /></li>
+      <li><img class="lazy" src="./imgs/loading.jpeg" data-src="./imgs/img4.jpeg" alt="해변4" /></li>
+      <li><img class="lazy" src="./imgs/loading.jpeg" data-src="./imgs/img5.jpeg" alt="해변5" /></li>
+      <li><img class="lazy" src="./imgs/loading.jpeg" data-src="./imgs/img6.jpeg" alt="해변6" /></li>
+      <li><img class="lazy" src="./imgs/loading.jpeg" data-src="./imgs/img7.jpeg" alt="해변7" /></li>
+      <li><img class="lazy" src="./imgs/loading.jpeg" data-src="./imgs/img8.jpeg" alt="해변8" /></li>
+    </ul>
+  </body>
+</html>

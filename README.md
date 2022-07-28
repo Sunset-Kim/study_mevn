@@ -29,6 +29,7 @@ const observer = new IntersectionObserver(
           entry.target.src = img.src;
           entry.target.classList.remove("lazy");
           observer.unobserve(entry.target);
+          여;
         };
       }
     });
@@ -78,4 +79,26 @@ function lazyLoad() {
     }, 200);
   }
 }
+```
+
+# functional Programing
+
+## currying
+
+- 주어진 매개변수보다 적은 수의 매개변수를 넘겨주어 매개변수가 완전히 채워지지 않은 함수가 실행은 되지 않고 넘겨져 마지막 매개변수가 채워지면 그 때 함수를 실행하는 기법
+- 커링이 가능한 이유 : 외부함수의 컨텍스트가 소멸되어도 내부함수가 외부함수의 실행환경을 참조할 수 있는 클로저
+
+### Ramda를 이용한 커링
+
+```bash
+npm install ramda
+```
+
+```js
+const R = require("ramda");
+const addFourNumber = (a, b, c, d) => a + b + c + d;
+const curriedAdd = R.curry(addFourNumber);
+const f = curriedAdd(1, 2);
+const newF = f(3);
+console.log(newF(4)); // 10
 ```

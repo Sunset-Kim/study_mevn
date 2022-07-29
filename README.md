@@ -102,3 +102,32 @@ const f = curriedAdd(1, 2);
 const newF = f(3);
 console.log(newF(4)); // 10
 ```
+
+# Server
+
+## 일반 http 객체로 서버만들기
+
+```js
+const http = require("http");
+const server = http.createServer((req, res) => {
+  res.setHeader("Content-type", "application/json charset=utf-8;");
+  const obj = {
+    key: "value",
+  };
+  res.end(JSON.stringify(obj));
+});
+```
+
+## PM2로 자동 restart 되는 서버 만들기
+
+```
+npm install pm2 --location=global
+```
+
+| 명령어                    | 설명                                           |
+| ------------------------- | ---------------------------------------------- |
+| pm2 list                  | 관리하는 앱을 표기합니다                       |
+| pm2 start `<파일명>`      | pm2로 앱을 시작합니다                          |
+| pm2 monit ---             | pm2로 관리하는 앱이 어떤 상태인지를 보여줍니다 |
+| pm2 stop `<id or name>`   | pm2로 시작한 앱을 중단합니다                   |
+| pm2 delete `<id or name>` | pm2로 관리하는 앱을 중단하고 삭제합니다        |

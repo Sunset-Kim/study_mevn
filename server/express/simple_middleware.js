@@ -3,8 +3,6 @@ const express = require("express");
 const app = express();
 const PORT = 12010;
 
-("/end");
-
 // 1번로직
 app.use((req, res, next) => {
   // 토큰로직

@@ -9,9 +9,13 @@ import NavList from "./components/NavList.vue";
   </header>
 
   <!-- 본문내용 -->
-  <main>
+  <main class="main">
     <RouterView />
   </main>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main {
+  font-size: 16px;
+}
+</style>

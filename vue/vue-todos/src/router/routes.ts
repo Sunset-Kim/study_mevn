@@ -1,5 +1,6 @@
 import HomeViewVue from "@views/HomeView.vue";
-import AboutViewVue from "@views/AboutView.vue";
+import TodosView from "@views/TodosView.vue";
+
 import type { RouteRecordRaw } from "vue-router";
 const routes: RouteRecordRaw[] = [
   {
@@ -8,9 +9,9 @@ const routes: RouteRecordRaw[] = [
     component: HomeViewVue,
   },
   {
-    path: "/about",
-    name: "about",
-    component: () => AboutViewVue,
+    path: "/todos",
+    name: "todos",
+    component: TodosView,
   },
 ];
 

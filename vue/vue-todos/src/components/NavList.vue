@@ -1,6 +1,6 @@
 <template>
-  <nav>
-    <ul class="wrapper">
+  <nav class="nav">
+    <ul>
       <li v-for="item in routes" :key="item.name">
         <router-link :to="{ name: item.name }">
           {{ item.name }}
@@ -16,27 +16,22 @@ import routes from "../router/routes";
 
 <style scoped lang="scss">
 $border: var(--color-border);
-.wrapper {
-  display: flex;
-}
-ul {
-  padding: 0;
-}
-li {
-  list-style: none;
-  a {
-    text-transform: capitalize;
-    font-size: 16px;
+
+.nav {
+  ul {
+    display: flex;
+    justify-content: center;
   }
-}
 
-a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid $border;
+  a {
+    display: inline-block;
+    padding: 0 1rem;
+    border-left: 1px solid $border;
+    text-transform: capitalize;
 
-  &:first-of-type {
-    border: 0;
+    &:first-of-type {
+      border: 0;
+    }
   }
 }
 </style>

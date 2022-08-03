@@ -1,5 +1,7 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
+  --vue-green: hsla(160, 100%, 37%, 1);
+  --vue-green-hover: hsla(160, 100%, 37%, 0.2);
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
   --vt-c-white-mute: #f2f2f2;
@@ -83,7 +85,25 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+h1 {
+  font-size: 36px;
+  line-height: 1.6;
+}
 
+h2 {
+  font-size: 28px;
+  line-height: 1.6;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+p {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
 ul {
   padding: 0;
 }

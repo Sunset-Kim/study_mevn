@@ -8,6 +8,7 @@ interface Todo {
 }
 
 let id = 0;
+
 const todos = ref<Todo[]>([
   {
     id: id++,
@@ -31,6 +32,17 @@ const todos = ref<Todo[]>([
   },
 ]);
 
+const inputValue = ref("");
+
+const onInput = (e: Event) => {
+  inputValue.value = (<HTMLInputElement>e.target).value;
+};
+
+function addTodo() {
+  todos.value.push({ id: id++, title: inputValue.value, done: false });
+  inputValue.value = "";
+}
+
 function checkTodo(id: number) {
   const todo = todos.value.find((todo) => todo.id === id);
   if (todo) {
@@ -46,6 +58,10 @@ function deleteTodo(id: number) {
 <template>
   <section>
     <h3 class="title">반복문</h3>
+    <div class="form">
+      <input :value="inputValue" @input="onInput" class="input" type="text" />
+      <button @click="addTodo" class="button">추가요</button>
+    </div>
     <ul>
       <li v-for="todo in todos" :key="todo.id" :class="{ todo: true, done: todo.done }">
         <input type="checkbox" :checked="todo.done" @click="checkTodo(todo.id)" />
@@ -114,10 +130,53 @@ section {
 .todo {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 8px;
 
   &.done {
     text-decoration: line-through;
+  }
+}
+
+.form {
+  display: flex;
+  width: 100%;
+  margin-bottom: 8px;
+
+  .input {
+    flex: 2;
+    border-radius: 8px 0 0 8px;
+    border: 1px solid $green;
+  }
+
+  .button {
+    position: relative;
+    flex: 0.5;
+    border-radius: 0 8px 8px 0;
+    border: 1px solid $green;
+    border-left: 0;
+    background-color: $green;
+    color: white;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 0 8px 8px 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 0.1;
+      }
+    }
   }
 }
 </style>

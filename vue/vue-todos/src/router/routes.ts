@@ -1,7 +1,8 @@
 import HomeViewVue from "@views/HomeView.vue";
 import TodosView from "@views/TodosView.vue";
 import CompositionAPIViewVue from "@views/CompositionAPIView.vue";
-import CompositionRenderVue from "@/container/composition/compositionRender.vue";
+import Section1 from "@/container/composition/Section1.vue";
+import Section2 from "@/container/composition/Section2.vue";
 
 import type { RouteRecordRaw } from "vue-router";
 const routes: RouteRecordRaw[] = [
@@ -19,7 +20,10 @@ const routes: RouteRecordRaw[] = [
     path: "/composition",
     name: "composition",
     component: CompositionAPIViewVue,
-    children: [{ path: "1", component: CompositionRenderVue }],
+    children: [
+      { path: "1", component: Section1 },
+      { path: "2", component: Section2 },
+    ],
   },
 ];
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, computed } from "vue";
 
 interface Todo {
   id: number;
@@ -8,6 +8,19 @@ interface Todo {
 }
 
 let id = 0;
+
+const h3 = ref<HTMLHeadElement | null>(null);
+const completed = ref(false);
+
+onMounted(() => {
+  if (h3.value) {
+    h3.value.textContent = "Ref 접근";
+  }
+});
+
+const filteredTodos = computed(() => {
+  return todos.value.filter((todo) => (completed.value ? todo.done === true : todo));
+});
 
 const todos = ref<Todo[]>([
   {
@@ -39,6 +52,7 @@ const onInput = (e: Event) => {
 };
 
 function addTodo() {
+  if (inputValue.value === "") return;
   todos.value.push({ id: id++, title: inputValue.value, done: false });
   inputValue.value = "";
 }
@@ -53,22 +67,43 @@ function checkTodo(id: number) {
 function deleteTodo(id: number) {
   todos.value = todos.value.filter((todo) => todo.id !== id);
 }
+
+function showCompleteTodos() {
+  completed.value = true;
+}
+
+function showAllTodos() {
+  completed.value = false;
+}
 </script>
 
 <template>
   <section>
-    <h3 class="title">반복문</h3>
+    <h3 class="title">TODO</h3>
     <div class="form">
       <input :value="inputValue" @input="onInput" class="input" type="text" />
       <button @click="addTodo" class="button">추가요</button>
     </div>
+
+    <div class="button__group">
+      <button :class="{ button: true, button__tab: true, is_active: !completed }" @click="showAllTodos">
+        모두보기
+      </button>
+      <button :class="{ button: true, button__tab: true, is_active: completed }" @click="showCompleteTodos">
+        완료된 목록만보기
+      </button>
+    </div>
     <ul>
-      <li v-for="todo in todos" :key="todo.id" :class="{ todo: true, done: todo.done }">
+      <li v-for="todo in filteredTodos" :key="todo.id" :class="{ todo: true, done: todo.done }">
         <input type="checkbox" :checked="todo.done" @click="checkTodo(todo.id)" />
         <p>{{ todo.title }}</p>
         <button class="button" @click="deleteTodo(todo.id)">삭제</button>
       </li>
     </ul>
+  </section>
+
+  <section>
+    <h3 class="title" ref="h3">언제까지 어깨춤을 추게할꼬에오?</h3>
   </section>
 </template>
 
@@ -177,6 +212,19 @@ section {
         opacity: 0.1;
       }
     }
+  }
+}
+
+.button__group {
+  display: flex;
+  margin-bottom: 8px;
+}
+.button__tab {
+  flex: 1;
+  font-size: 14px;
+  padding: 8px 0;
+  &.is_active {
+    background-color: $green-hover;
   }
 }
 </style>

@@ -22,7 +22,7 @@ const routes: RouteRecordRaw[] = [
     name: "composition",
     component: CompositionAPIViewVue,
     children: [
-      { path: "1", component: Section1 },
+      { path: "", component: Section1 },
       { path: "2", component: Section2 },
       { path: "3", component: Section3 },
     ],

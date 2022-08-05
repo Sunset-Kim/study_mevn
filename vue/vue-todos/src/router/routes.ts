@@ -3,6 +3,7 @@ import TodosView from "@views/TodosView.vue";
 import CompositionAPIViewVue from "@views/CompositionAPIView.vue";
 import Section1 from "@/container/composition/Section1.vue";
 import Section2 from "@/container/composition/Section2.vue";
+import Section3 from "@/container/composition/Section3.vue";
 
 import type { RouteRecordRaw } from "vue-router";
 const routes: RouteRecordRaw[] = [
@@ -23,6 +24,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: "1", component: Section1 },
       { path: "2", component: Section2 },
+      { path: "3", component: Section3 },
     ],
   },
 ];

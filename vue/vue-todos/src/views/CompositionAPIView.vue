@@ -5,6 +5,7 @@
       <ul>
         <li><router-link to="/composition/1">1장 컴포지션렌더</router-link></li>
         <li><router-link to="/composition/2">2장 컴포지션렌더</router-link></li>
+        <li><router-link to="/composition/3">3장 Child & Props</router-link></li>
       </ul>
     </div>
 

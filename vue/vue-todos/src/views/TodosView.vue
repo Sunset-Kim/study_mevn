@@ -1,8 +1,12 @@
 <template>
   <div>
-    <div>
-      {{ newSaying }}
+    <div class="saying">
+      <div v-if="newSaying">
+        {{ newSaying }}
+      </div>
+      <div v-else>로딩중</div>
     </div>
+
     <div class="input__container">
       <InputComponent />
     </div>
@@ -22,6 +26,13 @@
 <style lang="scss" scoped>
 .input__container {
   margin-top: 16px;
+}
+
+.saying {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
 }
 
 p {

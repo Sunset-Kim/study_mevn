@@ -1,10 +1,30 @@
 <template lang="">
   <div>
-    <form v-on:submit="handleSubmit">
-      <input type="text" :value="input" />
-      <button>입력</button>
+    <form class="form" v-on:submit.prevent="onSubmit">
+      <input class="input" type="text" :value="text" @input="onInput" />
+      <button class="button">입력</button>
     </form>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "InputComponent",
+  data() {
+    return {
+      text: "",
+    };
+  },
+  methods: {
+    onInput(e: Event) {
+      this.text = (e.target as HTMLInputElement).value;
+    },
+    onSubmit(e: Event) {
+      this.$emit("send", this.text);
+      this.text = "";
+    },
+  },
+});
+</script>
 <style lang=""></style>

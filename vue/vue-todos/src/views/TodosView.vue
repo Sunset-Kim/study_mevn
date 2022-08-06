@@ -8,15 +8,17 @@
     </div>
 
     <div class="input__container">
-      <InputComponent />
+      <InputComponent @send="onAdd" />
     </div>
+
+    <div>총{{ totalLength }} 중 {{ doneLength }}남았습니다</div>
 
     <div>
       <ul>
-        <li v-for="todo in todos" :key="todo.id" :class="{ todo: true, done: todo.done }">
-          <input type="checkbox" :checked="todo.done" />
+        <li v-for="todo in todos" :key="todo.title" :class="{ todo: true, done: todo.done }">
+          <input type="checkbox" :checked="todo.done" @click="toggleDone(todo)" />
           <p>{{ todo.title }}</p>
-          <button class="button" @click="deleteTodo(todo.id)">삭제</button>
+          <button class="button" @click="removeTodo(todo)">삭제</button>
         </li>
       </ul>
     </div>
@@ -41,19 +43,22 @@ p {
 </style>
 
 <script lang="ts">
-import { onMounted } from "vue";
+import { defineComponent, onMounted } from "vue";
 import InputComponent from "../components/input/InputComponent.vue";
 import { useSaying } from "@/stores/useSaying";
-import { mapState, storeToRefs } from "pinia";
+import { mapState } from "pinia";
+import { useTodos } from "@/stores/useTodos";
 
-export default {
+export default defineComponent({
   name: "TodosView",
   components: {
     InputComponent,
   },
+
   setup() {
     const today = Date().toString();
     const saying = useSaying();
+    const todoStore = useTodos();
 
     onMounted(() => {
       saying.setSaying();
@@ -61,8 +66,19 @@ export default {
 
     return {
       today,
+      addTodo: todoStore.addTodo,
+      removeTodo: todoStore.removeTodo,
+      toggleDone: todoStore.toggleDone,
     };
   },
-  computed: { ...mapState(useSaying, ["newSaying"]) },
-};
+  computed: {
+    ...mapState(useSaying, ["newSaying"]), //
+    ...mapState(useTodos, ["todos", "totalLength", "doneLength"]),
+  },
+  methods: {
+    onAdd(e: any) {
+      this.addTodo(e);
+    },
+  },
+});
 </script>
